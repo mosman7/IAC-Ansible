@@ -83,3 +83,9 @@ Some commands you can use to check connection
 
 `sudo ansible all -m ping` - pings all hosts
 `sudo ansible web/db -m ping` - select on of the hosts and ping the specific host
+
+### What is inventory
+- Ansible reads information about the machines you manage from the inventory.
+- Inventory is listed in the file which contains IP addresses, databases, and servers
+### What are ansible roles
+Ansible roles allow you to develop reusable automation components by grouping and encapsulating related automation artifacts, like configuration files, templates, tasks, and handlers. Because roles isolate these components, it's easier to reuse them and share them with other people.
