@@ -16,8 +16,9 @@ sudo apt-get install tree -y
 2. cd into /etc/ansible - should be hosts in here
     - here we can ssh into other vms using ip
 `sudo ssh vagrant@192.168.33.11` - will ssh into db vm
+    - now we need to set a password - default password is `vagrant`
 
-3. Now we need to connect to vms using connector
+3. Now we need to connect to the vms using the connector
     - cd to /etc/ansible/hosts
     - `sudo nano hosts`
     - add
@@ -35,7 +36,7 @@ sudo apt-get install tree -y
     [db]
     192.168.33.11
     ```
-4. Now if you ping the 2 vms from controller it should return `success`
+4. Now if you ping the 2 vms from controller it should return `success` -   password must be set up first!!
     - run `sudo ansible -m ping web` will return that thus is a success `"ping": "pong"`
 
 Some commands you can use to check connection
