@@ -28,3 +28,8 @@ Ansible is a simple IT automation engine that automates cloud provisioning, conf
 - Flexible - Can orchestrate the entire application environment no matter where it's deployed
 - Agentless - Do not need to install any other software or firewall ports on the client systems you want to automate, also don't need to set up a seperate management structure.
 - Efficient - You do not need to install any extra software, there's more room for application resources on your server.
+
+### Blue Green deployment
+- A blue/green deployment is a deployment strategy in which you create two separate, but identical environments. One environment (blue) is running the current application version and one environment (green) is running the new application version.
+- When the new environment (green) is ready and tested, traffic is redirected from blue to green. If there are any problems then we switch back to blue while we fix these.
+- Reduces downtime
