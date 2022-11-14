@@ -19,6 +19,8 @@ IaC can help your organisation manage IT infrastructure needs while also improvi
 - Orchestration means arranging or coordinating multiple systems. It's also used to mean 'running the same tasks on a bunch of servers at once, but not necessarily all of them'
 
 ### What is Ansible
+![ansible](https://user-images.githubusercontent.com/115226294/201696502-b131b5da-ac3a-4655-8e0c-1fd59b965252.png)
+
 Ansible is a simple IT automation engine that automates cloud provisioning, configuration management, application deployment, infra-service orchestration, and many other IT needs.
 
 #### Benefits
