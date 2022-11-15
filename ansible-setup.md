@@ -49,52 +49,22 @@ sudo apt-get install tree -y
 - `ansible all/<server-name> -a "date"` -> Gets the time of that server and timezone.
 - `ansible all/<server-name> -a "free -m"` -> Shows how much memory is available
 #### Moving files
-`ansible all/<server-name> -m copy -a "src=file-path dest=destination-file-path"` -> Sends a file over using the copy method 
-vagrant@controller:/etc/ansible$ sudo ansible web -m copy -a "src=hosts dest=/home/vagrant"
-
+`ansible all/<server-name> -m copy -a "src=/etc/ansible/hosts dest=/home/vagrant"` -> Sends a file over using the copy method 
 - can also `.` to specify local directory
 
 ## Playbooks
 1. In /etc/ansible create a yaml file
     - `sudo nano nginx.yml`
-2. create a script to configure nginx in our web server   
-```
-# who is the host - name of the server
-- hosts: web
-# gather data
-  gather_facts: yes
-# we need admin access
-  become: true
-# add instructions
-  tasks:
-  - name: Install/configure Nginx web server in web-VM  
-    apt: pkg=nginx state=present
-# ensure nginx is running
-```
+2. create a script to configure nginx in our web server- nginx.yml
 3. To run the playbook `sudo ansible-playbook configure_nginx.yml`
 4. check status of nginx- should be running `sudo ansible web -a "systemctl status nginx"`
 
 - syntax check `sudo ansible-playbook configure_nginx.yml --syntax-check`
 
-- Install Node and NPM
-```
----
-# Now i want to install Node and NPM
-
-#who is the host
-- hosts: web
-
-  #gather data
-  gather_facts: yes
-
-  #admin access
-  become:true
-
- #add instructions
-  tasks:
-  - name: Install Node
-    apt: pkg=nodejs state=present
-  
-  - name: Install NPM
-    apt: pkg=npm state=present
-```
+- Install Node and NPM - node.yml
+- Copy app folder into controller vm from local host
+- Copy app from controller to web
+- `sudo ansible web -m copy -a "src=~/moham/Documents/app dest=/home/vagrant/"`
+- Install mongodb - mongo.yml
+- Check status of mongodb
+    - `sudo ansible db -a "systemctl status mongodb"`

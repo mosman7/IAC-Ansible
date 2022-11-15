@@ -1,0 +1,11 @@
+---
+#now we want to copy the app folder from controller to web
+# host is web server
+- hosts: web
+# only 1 task - to copy
+  tasks:
+  - name: Copy Node App
+    become: true 
+    copy:
+      src: /home/vagrant/app
+      dest: /home/vagrant

@@ -1,0 +1,12 @@
+---
+# who is the host - name of the server
+- hosts: web
+# gather data
+  gather_facts: yes
+# we need admin access
+  become: true
+# add instructions
+  tasks:
+  - name: Install/configure Nginx web server in web-VM  
+    apt: pkg=nginx state=present
+# ensure nginx is running
