@@ -33,7 +33,7 @@
   #     src: /home/vagrant/environment
   #     dest: /home/vagrant
 
-  - name: Run nom
+  - name: Run NPM
     shell: |
       cd app
       npm install

@@ -53,18 +53,40 @@ sudo apt-get install tree -y
 - can also `.` to specify local directory
 
 ## Playbooks
-1. In /etc/ansible create a yaml file
+- Ansible playbooks are a .yml files written in YAML
+- Yet Another Markup Language (YMAL)
+- Playbooks start with --- 3 dashes
+## Create playbooks to launch node app
+1. In /etc/ansible create a yaml file to install nginx
     - `sudo nano nginx.yml`
-2. create a script to configure nginx in our web server- nginx.yml
-3. To run the playbook `sudo ansible-playbook configure_nginx.yml`
+2. create a script to configure nginx in our web server - nginx.yml
+3. To run the playbook `sudo ansible-playbook nginx.yml`
 4. check status of nginx- should be running `sudo ansible web -a "systemctl status nginx"`
-
-- syntax check `sudo ansible-playbook configure_nginx.yml --syntax-check`
-
-- Install Node and NPM - node.yml
-- Copy app folder into controller vm from local host
-- Copy app from controller to web
-- `sudo ansible web -m copy -a "src=~/moham/Documents/app dest=/home/vagrant/"`
-- Install mongodb - mongo.yml
-- Check status of mongodb
+5. To check if the syntax is correct run
+    - syntax check `sudo ansible-playbook configure_nginx.yml --syntax-check`
+6. Next we need to install Node and NPM - node.yml
+    - Node must be v12
+    - If you have an old version run `sudo apt-get purge nodejs`
+    - Install PM2 
+7. Copy app folder into controller vm from local host
+    - copy line into vagrant file `controller.vm.synced_folder "/Users/moham/Documents/app", "/home/vagrant/app"`
+8. Copy app from controller to web
+    - `sudo ansible web -m copy -a "src=~/moham/Documents/app dest=/home/vagrant/"`
+9. Run a shell script to cd into app folder 
+    - Install NPM
+    - Seed the database
+    - Run PM2
+#### Now we need to set up the DB
+1. Install mongodb - mongo.yml
+2. Next we need to delete the mongo.conf file and make a new one with the new bind IP
+3. Save the .conf file
+4.  Check status of mongodb
     - `sudo ansible db -a "systemctl status mongodb"`
+
+## Now the 2 playbooks are set up we can run them
+- `sudo ansible-playbook mongo.yml` - loads the db
+- `sudo ansible-playbook node.yml` - launches app
+- when all tests have passed 
+    - go to web ip `192.168.33.10`
+    - add `:3000` for node app
+    - add `/posts` for database
