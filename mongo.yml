@@ -1,0 +1,12 @@
+---
+# Now we need to install mongodb for our database       
+# host is our db
+- hosts: db
+
+  gather_facts: yes
+
+  become: true
+
+  tasks:
+  - name: Install MongoDB latest version
+    apt: pkg mongodb state=present

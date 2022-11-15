@@ -50,11 +50,13 @@ sudo apt-get install tree -y
 - `ansible all/<server-name> -a "free -m"` -> Shows how much memory is available
 #### Moving files
 `ansible all/<server-name> -m copy -a "src=file-path dest=destination-file-path"` -> Sends a file over using the copy method 
+vagrant@controller:/etc/ansible$ sudo ansible web -m copy -a "src=hosts dest=/home/vagrant"
+
 - can also `.` to specify local directory
 
 ## Playbooks
 1. In /etc/ansible create a yaml file
-    - nginx.yml
+    - `sudo nano nginx.yml`
 2. create a script to configure nginx in our web server   
 ```
 # who is the host - name of the server
@@ -71,3 +73,28 @@ sudo apt-get install tree -y
 ```
 3. To run the playbook `sudo ansible-playbook configure_nginx.yml`
 4. check status of nginx- should be running `sudo ansible web -a "systemctl status nginx"`
+
+- syntax check `sudo ansible-playbook configure_nginx.yml --syntax-check`
+
+- Install Node and NPM
+```
+---
+# Now i want to install Node and NPM
+
+#who is the host
+- hosts: web
+
+  #gather data
+  gather_facts: yes
+
+  #admin access
+  become:true
+
+ #add instructions
+  tasks:
+  - name: Install Node
+    apt: pkg=nodejs state=present
+  
+  - name: Install NPM
+    apt: pkg=npm state=present
+```
