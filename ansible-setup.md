@@ -41,7 +41,8 @@ sudo apt-get install tree -y
 
 Some commands you can use to check connection
 
-`sudo ansible all -m ping` - pings all hosts
-`sudo ansible web/db -m ping` - select on of the hosts and ping the specific host
+- `sudo ansible all -m ping` - pings all hosts
+- `sudo ansible web/db -m ping` - select on of the hosts and ping the specific host
+#### Moving files
 `ansible all/<server-name> -m copy -a "src=file-path dest=destination-file-path"` -> Sends a file over using the copy method 
     - can also `.` to specify local directory
