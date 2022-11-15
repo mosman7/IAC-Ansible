@@ -39,7 +39,7 @@ Ansible is a simple IT automation engine that automates cloud provisioning, conf
 - Reduces downtime
 
 ### What is inventory
-- Ansible reads information about the machines you manage from the inventory.
+- Ansible reads information about the machines you manage from the inventory.- In our case the hosts file in /etc/ansible/hosts
 - Inventory is listed in the file which contains IP addresses, databases, and servers
 ### What are ansible roles
 Ansible roles allow you to develop reusable automation components by grouping and encapsulating related automation artifacts, like configuration files, templates, tasks, and handlers. Because roles isolate these components, it's easier to reuse them and share them with other people.
