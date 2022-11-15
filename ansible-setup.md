@@ -52,10 +52,10 @@ sudo apt-get install tree -y
 `ansible all/<server-name> -m copy -a "src=file-path dest=destination-file-path"` -> Sends a file over using the copy method 
 - can also `.` to specify local directory
 
-Playbooks
-in /etc/ansible create a yaml file
-nginx.yml
-#create a script to configure nginx in our web server   
+## Playbooks
+1. In /etc/ansible create a yaml file
+    - nginx.yml
+2. create a script to configure nginx in our web server   
 ```
 # who is the host - name of the server
 - hosts: web
@@ -69,5 +69,5 @@ nginx.yml
     apt: pkg=nginx state=present
 # ensure nginx is running
 ```
-to run the playbook `sudo ansible-playbook configure_nginx.yml`
-check status `sudo ansible web -a "systemctl status nginx"`
+3. To run the playbook `sudo ansible-playbook configure_nginx.yml`
+4. check status of nginx- should be running `sudo ansible web -a "systemctl status nginx"`
