@@ -22,8 +22,7 @@
        
        controller.vm.synced_folder "/Users/moham/Documents/app", "/home/vagrant/app"
 
-       #controller.vm.synced_folder "C:/Users/moham/Documents/environment", "/home/vagrant/environment"
-
+       
        # config.hostsupdater.aliases = ["development.controller"] 
        
       end 

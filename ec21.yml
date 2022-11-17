@@ -1,0 +1,39 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: True
+  become: True
+  vars:
+    key_name: eng130
+    region: eu-west-1
+    image: ami-046eebc2b6e633a26
+    id: "eng130-osman-ansible-app1"
+    security_group_id: "sg-012fba9c5909d8e1b"
+    subnet_id: "subnet-013b0b0deea20b0e5"
+    ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+   - name: Get instances facts
+     ec2_instance_facts:
+       aws_access_key: "{{aws_access_key}}"
+       aws_secret_key: "{{aws_secret_key}}"
+       region: "{{ region }}
+     register: result
+
+
+   - name: Upload public key to AWS
+     ec2:
+       aws_access_key: "{{ aws_access_key }}"
+       aws_secret_key: "{{ aws_secret_key }}"
+       assign_public_ip: true
+       key_name: "{{ key_name }}"
+       id: "{{ id }}"
+       vpc_subnet_id: "{{ subnet_id }}"
+       group_id: "{{ security_group_id }}"
+       image: "{{ image }}"
+       instance_type: t2.micro
+       region: "{{region}}"
+       wait: true
+       count: 1
+       instage_tags:
+        Name:eng130-osman-ansible-app

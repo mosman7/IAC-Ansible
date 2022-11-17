@@ -28,11 +28,6 @@
       src: /home/vagrant/app
       dest: /home/vagrant
 
-  # - name: Copy web environment into web virtual machine
-  #   synchronize:
-  #     src: /home/vagrant/environment
-  #     dest: /home/vagrant
-
   - name: Run NPM
     shell: |
       cd app

@@ -10,7 +10,6 @@
   tasks:
   - name: Install MongoDB latest version
     apt: pkg=mongodb state=present
-    tasks:
   
   - name: Remove mongodb file (delete file)
     file:
@@ -22,6 +21,7 @@
       path: /etc/mongodb.conf
       state: touch
       mode: u=rw,g=r,o=r
+
   - name: Insert multiple lines and Backup
     blockinfile:
       path: /etc/mongodb.conf
@@ -37,6 +37,7 @@
         net:
           port: 27017
           bindIp: 0.0.0.0
+
   - name: Restart mongodb
     become: true
     shell: systemctl restart mongodb
